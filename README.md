@@ -8,7 +8,7 @@ Análise serial e paralela da evolução temporal de avaliações de produtos al
 
 Este projeto tem como objetivo comparar o desempenho de uma **solução serial** e uma **solução paralela** para calcular a evolução média das avaliações de produtos ao longo do tempo, utilizando o dataset público **Amazon Fine Food Reviews**.
 
-O problema consiste em, para cada um dos 74.258 produtos presentes no dataset, calcular a **média mensal das notas** atribuídas pelos consumidores ao longo de todo o período disponível (outubro de 1999 a outubro de 2012), produzindo uma curva de evolução de reputação para cada produto.
+O problema consiste em calcular a **média mensal das notas** de todos os produtos ao longo de todo o período disponível (outubro de 1999 a outubro de 2012), produzindo uma curva de evolução de reputação para cada produto. Para isso, as **568.454 avaliações** são processadas seguindo o padrão **Map → Reduce**: na fase Map, os dados são divididos entre workers que calculam médias parciais em paralelo; na fase Reduce, os resultados parciais são combinados para gerar a evolução final por produto.
 
 Este trabalho foi desenvolvido como projeto prático da disciplina de **Programação Paralela**.
 
@@ -44,19 +44,37 @@ Este trabalho foi desenvolvido como projeto prático da disciplina de **Programa
 
 ## ⚙️ O que o programa faz
 
-Para cada produto, o processamento segue os seguintes passos:
+O processamento segue os seguintes passos:
 
-1. Filtrar todas as avaliações do produto
+1. Carregar as 568.454 avaliações do dataset
 2. Converter o timestamp Unix para ano/mês
-3. Agrupar as avaliações por mês
-4. Calcular a média das notas em cada mês
-5. Armazenar a série temporal resultante
+3. Agrupar as avaliações por produto e por mês
+4. Calcular a média das notas em cada mês para cada produto
+5. Armazenar a série temporal resultante por produto
 
 ### Solução Serial
-Os 74.258 produtos são processados **um por vez**, de forma sequencial.
+As 568.454 avaliações são processadas **de uma vez**, de forma sequencial, calculando diretamente a média mensal por produto.
 
 ### Solução Paralela
-Os produtos são **divididos entre múltiplos workers** com `multiprocessing.Pool`, de forma que vários produtos sejam processados simultaneamente. Cada produto é completamente independente dos demais, o que caracteriza um problema *embarrassingly parallel*.
+A solução paralela segue o padrão clássico **Map → Reduce**:
+
+**Fase MAP** — as 568.454 avaliações são divididas em fatias iguais entre os workers. Cada worker processa sua fatia de forma independente e calcula médias parciais por produto por mês.
+
+```
+Worker 1 → avaliações 1 a 142.113       → médias parciais
+Worker 2 → avaliações 142.114 a 284.226 → médias parciais
+Worker 3 → avaliações 284.227 a 426.339 → médias parciais
+Worker 4 → avaliações 426.340 a 568.454 → médias parciais
+```
+
+**Fase REDUCE** — os resultados parciais de todos os workers são combinados para produzir a evolução mensal final de cada produto.
+
+```
+médias parciais do worker 1 ┐
+médias parciais do worker 2 ├→ REDUCE → evolução final por produto
+médias parciais do worker 3 │
+médias parciais do worker 4 ┘
+```
 
 ---
 
