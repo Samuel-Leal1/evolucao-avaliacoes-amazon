@@ -22,8 +22,8 @@ Este trabalho foi desenvolvido como projeto prático da disciplina de **Programa
 | Métrica | Valor |
 |---|---|
 | **Registros processados** | 568.454 |
-| **Tempo de execução** | 271,50 segundos |
-| **Tempo de execução** | 4,52 minutos |
+| **Tempo de execução (s)** | 271,50 segundos |
+| **Tempo de execução (min)** | 4,52 minutos |
 
 > Medição realizada com processamento linha a linha (loop Python puro + carga computacional artificial por registro). Os resultados da solução paralela serão adicionados após a execução do `benchmark.py`.
 
