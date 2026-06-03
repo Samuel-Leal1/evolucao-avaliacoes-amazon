@@ -27,6 +27,8 @@ Este trabalho foi desenvolvido como projeto prático da disciplina de **Programa
 
 > Medição realizada com processamento linha a linha (loop Python puro + carga computacional artificial por registro). Os resultados da solução paralela serão adicionados após a execução do `benchmark.py`.
 
+<img width="212" height="89" alt="image" src="https://github.com/user-attachments/assets/eb085790-06c6-4927-8dac-cc0b6799e62a" />
+
 
 ## 🗃️ Base de Dados
 
