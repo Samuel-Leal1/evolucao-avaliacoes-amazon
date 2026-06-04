@@ -1,10 +1,3 @@
-
-# 📊 evolucao-avaliacoes-amazon
-
-Análise serial e paralela da evolução temporal de avaliações de produtos alimentícios da Amazon (2002–2012), com medição de speedup e eficiência usando multiprocessing em Python.
-
----
-
 ## 📌 Descrição do Projeto
 
 Este projeto tem como objetivo comparar o desempenho de uma **solução serial** e uma **solução paralela** para calcular a evolução média das avaliações de produtos ao longo do tempo, utilizando o dataset público **Amazon Fine Food Reviews**.
@@ -14,21 +7,6 @@ O problema consiste em calcular a **média mensal das notas** de todos os produt
 Este trabalho foi desenvolvido como projeto prático da disciplina de **Programação Paralela**.
 
 ---
-
-## ⏱️ Resultados parciais
-
-### Solução Serial — tempo medido
-
-| Métrica | Valor |
-|---|---|
-| **Registros processados** | 568.454 |
-| **Tempo de execução (s)** | 271,50 segundos |
-| **Tempo de execução (min)** | 4,52 minutos |
-
-> Medição realizada com processamento linha a linha (loop Python puro + carga computacional artificial por registro). Os resultados da solução paralela serão adicionados após a execução do `benchmark.py`.
-
-<img width="212" height="89" alt="image" src="https://github.com/user-attachments/assets/eb085790-06c6-4927-8dac-cc0b6799e62a" />
-
 
 ## 🗃️ Base de Dados
 
@@ -103,6 +81,46 @@ médias parciais do worker 4 ┘
 
 ---
 
+## ⏱️ Resultados medidos
+
+Medições realizadas com processamento linha a linha (loop Python puro + carga computacional artificial por registro) sobre **568.454 avaliações reais**.
+
+### Solução Serial — tempo medido
+
+| Métrica | Valor |
+|---|---|
+| **Registros processados** | 568.454 |
+| **Tempo de execução (s)** | 271,50 segundos |
+| **Tempo de execução (min)** | 4,52 minutos |
+
+> Medição realizada com processamento linha a linha (loop Python puro + carga computacional artificial por registro). Os resultados da solução paralela serão adicionados após a execução do `benchmark.py`.
+
+<img width="212" height="89" alt="image" src="https://github.com/user-attachments/assets/eb085790-06c6-4927-8dac-cc0b6799e62a" />
+
+### Tempos de execução
+
+| Workers | Tempo (s) | Tempo (min) |
+|---|---|---|
+| 1 (serial) | 271,50s | 4,52 min |
+| 2 | 58,64s | 0,98 min |
+| 4 | 30,57s | 0,51 min |
+| 8 | 22,41s | 0,37 min |
+| 12 | 22,29s | 0,37 min |
+
+### Speedup e Eficiência
+
+| Workers | Speedup | Eficiência |
+|---|---|---|
+| 1 (serial) | 1,00x | 100,0% |
+| 2 | 4,63x | 231,5% |
+| 4 | 8,88x | 222,0% |
+| 8 | 12,11x | 151,4% |
+| 12 | 12,18x | 101,5% |
+
+> O speedup superlinear com 2 e 4 workers é explicado pelo melhor aproveitamento do cache da CPU com fatias menores. O platô entre 8 e 12 workers reflete o limite físico de núcleos da máquina utilizada, ilustrando na prática a **Lei de Amdahl**. A solução paralela com 8 workers reduziu o tempo de execução em **91,8%** em relação à solução serial.
+
+---
+
 ## 🛠️ Tecnologias utilizadas
 
 - Python 3.x
@@ -136,32 +154,3 @@ evolucao-avaliacoes-amazon/
 └── README.md
 ```
 
----
-
-## 🚀 Como executar
-
-**1. Clone o repositório**
-```bash
-git clone https://github.com/seu-usuario/evolucao-avaliacoes-amazon.git
-cd evolucao-avaliacoes-amazon
-```
-
-**2. Instale as dependências**
-```bash
-pip install -r requirements.txt
-```
-
-**3. Baixe o dataset**
-
-Acesse [kaggle.com/datasets/snap/amazon-fine-food-reviews](https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews), baixe o arquivo `Reviews.csv` e coloque-o na pasta `data/`.
-
-**4. Execute o benchmark**
-```bash
-python src/benchmark.py
-```
-
----
-
-## 📚 Referência
-
-> J. McAuley and J. Leskovec. *From amateurs to connoisseurs: modeling the evolution of user expertise through online reviews*. WWW, 2013.
