@@ -138,21 +138,15 @@ Medições realizadas com processamento linha a linha (loop Python puro + carga 
 ```
 evolucao-avaliacoes-amazon/
 │
-├── data/
-│   └── Reviews.csv               # Dataset (baixar do Kaggle)
-│
-├── src/
+├── scripts/
 │   ├── serial.py                 # Solução serial
 │   ├── paralelo.py               # Solução paralela com multiprocessing
-│   └── benchmark.py              # Medição de tempo, speedup e gráficos
 │
-├── notebooks/
-│   └── exploracao.ipynb          # Análise exploratória do dataset
+├── evidencias/
+│   ├── serial.png
+│   ├── serial.png
+│   ├── serial.png
 │
-├── resultados/
-│   └── graficos/                 # Gráficos gerados pelo benchmark
-│
-├── requirements.txt
 └── README.md
 ```
 
