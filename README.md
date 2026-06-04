@@ -25,6 +25,22 @@ evolucao-avaliacoes-amazon/
 │
 └── README.md
 ```
+##🚀 Como executar
+1. Clone o repositório
+bashgit clone https://github.com/seu-usuario/evolucao-avaliacoes-amazon.git
+cd evolucao-avaliacoes-amazon
+
+2. Instale as dependências
+bashpip install -r requirements.txt
+
+3. Baixe o dataset
+Acesse kaggle.com/datasets/snap/amazon-fine-food-reviews, baixe o arquivo Reviews.csv e coloque-o na raiz do projeto, na mesma pasta dos scripts.
+
+4. Execute a solução serial
+bashpython scripts/serial.py
+
+5. Execute a solução paralela
+bashpython scripts/paralelo.py
 
 ## 🗃️ Base de Dados
 
