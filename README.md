@@ -119,6 +119,8 @@ Medições realizadas com processamento linha a linha (loop Python puro + carga 
 
 > O speedup superlinear com 2 e 4 workers é explicado pelo melhor aproveitamento do cache da CPU com fatias menores. O platô entre 8 e 12 workers reflete o limite físico de núcleos da máquina utilizada, ilustrando na prática a **Lei de Amdahl**. A solução paralela com 8 workers reduziu o tempo de execução em **91,8%** em relação à solução serial.
 
+<img width="2077" height="1475" alt="desempenho_comparativo" src="https://github.com/user-attachments/assets/d5c02a18-7ab1-4fd0-8c11-39edc3512d6c" />
+
 ---
 
 ## 🛠️ Tecnologias utilizadas
