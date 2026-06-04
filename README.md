@@ -8,6 +8,24 @@ Este trabalho foi desenvolvido como projeto prático da disciplina de **Programa
 
 ---
 
+## 📁 Estrutura do repositório
+
+```
+evolucao-avaliacoes-amazon/
+│
+├── scripts/
+│   ├── serial.py                 # Solução serial
+│   ├── paralelo.py               # Solução paralela com multiprocessing
+│
+├── evidencias/
+│   ├── GraficoEvolucao_serial.png
+│   ├── desempenho_comparativo.png
+│   ├── tempoSerial.png
+│   ├── tempoParalelo.png
+│
+└── README.md
+```
+
 ## 🗃️ Base de Dados
 
 | Atributo | Valor |
@@ -133,20 +151,5 @@ Medições realizadas com processamento linha a linha (loop Python puro + carga 
 
 ---
 
-## 📁 Estrutura do repositório
 
-```
-evolucao-avaliacoes-amazon/
-│
-├── scripts/
-│   ├── serial.py                 # Solução serial
-│   ├── paralelo.py               # Solução paralela com multiprocessing
-│
-├── evidencias/
-│   ├── serial.png
-│   ├── serial.png
-│   ├── serial.png
-│
-└── README.md
-```
 
