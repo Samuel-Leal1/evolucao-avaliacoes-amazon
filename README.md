@@ -25,7 +25,7 @@ evolucao-avaliacoes-amazon/
 │
 └── README.md
 ```
-##🚀 Como executar
+## 🚀 Como executar
 1. Clone o repositório
 bashgit clone https://github.com/seu-usuario/evolucao-avaliacoes-amazon.git
 cd evolucao-avaliacoes-amazon
