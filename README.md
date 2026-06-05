@@ -27,7 +27,7 @@ evolucao-avaliacoes-amazon/
 ```
 ## 🚀 Como executar
 1. Clone o repositório
-   git clone https://github.com/seu-usuario/evolucao-avaliacoes-amazon.git
+   git clone https://github.com/Samuel-Leal1/evolucao-avaliacoes-amazon/tree/main
    cd evolucao-avaliacoes-amazon
 
 3. Instale as dependências
